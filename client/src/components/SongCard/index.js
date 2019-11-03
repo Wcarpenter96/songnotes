@@ -1,24 +1,17 @@
 import React from 'react';
-import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
+import { Card, ListGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export default (props) => {
     return (
-        <Container>
-            <Row className="mb-3">
-                <Col className={"text-center"}>
-                    <h1 className={"text-center"}>{props.article.title}</h1>
-                    <Card.Img style={{ width: '35rem' }} src={props.song.image} />
-
-                </Col>
-            </Row>
-            <Row className="mb-3">
-                <Col>
-                    <ListGroup>
-                        <ListGroup.Item>{props.song.title}</ListGroup.Item>
-                        <ListGroup.Item>{props.song.artist}</ListGroup.Item>
-                    </ListGroup>
-                </Col>
-            </Row>
-        </Container>
+        <Link to={`/songs/${props.song._id}`} onClick={props.handleSongSubmit}>
+            <Card style={{ width: '15rem' }} className='mb-3'>
+                <Card.Img variant="top" src={props.song.image} />
+                <Card.Header>{props.song.title}</Card.Header>
+                <ListGroup variant="flush">
+                    <ListGroup.Item>{props.song.artist}</ListGroup.Item>
+                </ListGroup>
+            </Card>
+        </Link>
     )
 }

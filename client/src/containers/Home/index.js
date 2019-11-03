@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Jumbotron } from 'react-bootstrap';
+import SongResults from './../../components/SongResults'
 import API from './../../utils/API';
 
 class Home extends Component {
@@ -14,7 +15,6 @@ class Home extends Component {
                 this.setState({
                     songs: res.data
                 })
-                console.log(this.state.songs)
             })
     }
 
@@ -22,8 +22,9 @@ class Home extends Component {
         return (
             <div>
                 <Jumbotron>
-                    <h1>Home Page</h1>
+                    <h1>Top Songs</h1>
                 </Jumbotron>
+                <SongResults songs={this.state.songs}></SongResults>
             </div>
         );
     }
