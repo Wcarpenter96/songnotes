@@ -1,6 +1,6 @@
 import React from 'react';
 import SongCard from './../SongCard'
-import { CardGroup, Container, Row, Col } from 'react-bootstrap';
+import { CardColumns, Container, Row, Col } from 'react-bootstrap';
 
 export default (props) => {
     if (props.songs.length > 0) {
@@ -9,11 +9,11 @@ export default (props) => {
             <Container>
                 <Row>
                     <Col>
-                        <CardGroup>
+                    <CardColumns>
                             {songs.map((song, index) => {
                                 return (<SongCard key={index} song={song}></SongCard>)
                             })}
-                        </CardGroup>
+                        </CardColumns>
                     </Col>
                 </Row>
             </Container>

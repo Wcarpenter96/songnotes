@@ -22,7 +22,8 @@ class Home extends Component {
         return (
             <div>
                 <Jumbotron>
-                    <h1>Top Songs</h1>
+                    <h1>Welcome To Songnotes</h1>
+                    <p>Compose your thoughts on today's hits here.</p>
                 </Jumbotron>
                 <SongResults songs={this.state.songs}></SongResults>
             </div>
