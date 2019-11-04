@@ -1,10 +1,16 @@
-const db = require("../models");
+const db = require("./../models");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
 module.exports = {
     scrapeAll: function (req, res) {
 
+        db.Song.remove({}, function (err) {
+            console.log('songs removed')
+        });
+        db.Comment.remove({}, function (err) {
+            console.log('comments removed')
+        });
         axios.get("https://www.rollingstone.com/charts/songs/").then(function (response) {
 
             var $ = cheerio.load(response.data);

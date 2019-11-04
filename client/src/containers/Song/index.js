@@ -16,29 +16,37 @@ class Song extends Component {
         comment: ''
     }
 
-    componentDidMount() {
+    getSong() {
         const { id } = this.props.match.params
         API.getSong(id)
             .then(res => {
                 this.setState({
                     song: res.data
                 })
-                console.log(this.state.song)
             })
-
     }
 
-    handleInputChange() {
-        
+    componentDidMount() {
+        this.getSong()
     }
 
-    handleSubmit() {
+    handleInputChange = e => {
+        const { value } = e.target;
+        this.setState({ comment: value });
+    }
 
+    handleSubmit = e => {
+        e.preventDefault();
+        const { id } = this.props.match.params
+        const { comment } = this.state
+        API.sendComment(comment, id)
+            .then(() => {
+                this.getSong();
+            })
     }
 
     render() {
         const { title, artist, image, comments } = this.state.song
-        console.log(title)
         return (
             <div style={{ position: "relative" }}>
                 <Jumbotron>
@@ -48,20 +56,20 @@ class Song extends Component {
                 <Container>
                     <Row>
                         <Col>
-                        <CardGroup>
-                            <Card style={{ width: '18rem' }}>
-                                <Card.Img variant="top" src={image} />
-                                <TextArea
-                                    handleInputChange={this.handleInputChange}
-                                    handleSubmit={this.handleSubmit}
-                                />
-                            </Card>
-                            <Card style={{ width: '18rem' }}>
-                                <Card.Header><b>Notes</b></Card.Header>
-                                <ListGroup variant="flush">
-                                    <CommentResults comments={comments}></CommentResults>
-                                </ListGroup>
-                            </Card>
+                            <CardGroup>
+                                <Card style={{ width: '18rem' }}>
+                                    <Card.Img variant="top" src={image} />
+                                    <TextArea
+                                        handleInputChange={this.handleInputChange}
+                                        handleSubmit={this.handleSubmit}
+                                    />
+                                </Card>
+                                <Card style={{ width: '18rem' }}>
+                                    <Card.Header><b>Notes</b></Card.Header>
+                                    <ListGroup variant="flush">
+                                        <CommentResults comments={comments}></CommentResults>
+                                    </ListGroup>
+                                </Card>
                             </CardGroup>
                         </Col>
                     </Row>
