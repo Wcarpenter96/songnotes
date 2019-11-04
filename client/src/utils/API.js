@@ -9,7 +9,6 @@ export default {
     },
     sendComment: function (comment, id) {
         return axios.post(`/api/comments/${id}`, {
-            name: '',
             text: comment
         });
     },

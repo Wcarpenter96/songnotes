@@ -3,7 +3,6 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var CommentSchema = new Schema({
-  name: String,
   text: String,
   song: {
     type: Schema.Types.ObjectId,
