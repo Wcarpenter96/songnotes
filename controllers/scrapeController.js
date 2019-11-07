@@ -34,7 +34,10 @@ module.exports = {
                     .catch(function (err) {
                         console.log(err);
                     });
-            });
+            })
+            .catch(e =>{
+                console.log(e);
+            })
             res.send("Scrape Complete");
         });
     }

@@ -13,6 +13,6 @@ export default {
         });
     },
     scrape: function () {
-        return axios.get(`/api/scrape/`);
+        return axios.get(`http://localhost:3001/api/scrape/`);
     }
 }
